@@ -1,40 +1,51 @@
+import {useState} from 'react';
+
 function App() {
+    const [calc, setCalc] = useState("");
+    const [result, setResult] = useState("");
 
-const createDigits = () => {
-    const digits = [];
+    const ops = ['/' , '*', '+' , '-', '.'];
 
-    for (let i = 1; i< 10; i++){
-        digits.push(
-            <button key={1}>{i}</button>
-        )
+    const updateCalc = value =>
+    {
+        setCalc(calc + value);
     }
-    return digits;
-}
+    const createDigits = () => {
+        const digits = [];
 
-  return (
-    <div className="App">
-        <div className="calculator">
-            <div className="display">
-                <span>(0)</span>0
+        for (let i = 1; i < 10; i++) {
+            digits.push(
+                <button key={1}>{i}</button>
+            )
+        }
+        return digits;
+    }
 
-            </div>
-            <div className="operators">
-                <button>/</button>
-                <button>*</button>
-                <button>+</button>
-                <button>-</button>
+    return (
+        <div className="App">
+            <div className="calculator">
+                <div className="display">
+                    { result ? <span>(0)</span> : '' }
+                    {calc || "0"}
 
-                <button>DEL</button>
-            </div>
-            <div className="digits">
-                { createDigits()}
-                <button>0</button>
-                <button>.</button>
-                <button>=</button>
+                </div>
+                <div className="operators">
+                    <button>/</button>
+                    <button>*</button>
+                    <button>+</button>
+                    <button>-</button>
+
+                    <button>DEL</button>
+                </div>
+                <div className="digits">
+                    {createDigits()}
+                    <button>0</button>
+                    <button>.</button>
+                    <button>=</button>
+                </div>
             </div>
         </div>
-    </div>
-  );
+    );
 }
 
 export default App;
